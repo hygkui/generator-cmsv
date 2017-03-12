@@ -25,7 +25,7 @@ yo cmsv
 
 ## License
 
-MIT © [hgykui]()
+MIT © [hygkui](https://github.com/hygkui)
 
 
 [npm-image]: https://badge.fury.io/js/generator-cmsv.svg
