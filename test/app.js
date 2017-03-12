@@ -6,7 +6,7 @@ var helpers = require('yeoman-test');
 describe('generator-cmsv:app', function () {
   before(function () {
     return helpers.run(path.join(__dirname, '../generators/app'))
-      .withPrompts({name: "demo"})
+      .withPrompts({name: 'demo'})
       .toPromise();
   });
 

@@ -4,7 +4,6 @@ var chalk = require('chalk');
 var yosay = require('yosay');
 var pkg = require('../package.json');
 
-
 module.exports = yeoman.Base.extend({
   prompting: function () {
     // Have Yeoman greet the user.
@@ -30,10 +29,9 @@ module.exports = yeoman.Base.extend({
   },
 
   writing: function () {
-    var capitalize = function(s)
-    {
+    var capitalize = function(s) {
       return s && s[0].toUpperCase() + s.slice(1);
-    }
+    };
 
     var paramsData = {
       name: this.props.name,
@@ -41,7 +39,7 @@ module.exports = yeoman.Base.extend({
       date: (new Date()).toLocaleDateString(),
       user: pkg.author.name,
       email: pkg.author.email
-    }
+    };
 
     this.fs.copyTpl(
       this.templatePath('client/module.js'),
@@ -108,13 +106,10 @@ module.exports = yeoman.Base.extend({
       this.destinationPath(paramsData.name + '/server/routes/' + this.props.name + '.server.route.js'),
       paramsData
     );
-
-
-
   },
 
   install: function () {
     // this.installDependencies();
-    console.log('copy done, enter install....');
+    console.log('Done, Boss.');
   }
 });

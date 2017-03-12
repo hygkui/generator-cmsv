@@ -1,12 +1,12 @@
 {
   "name": "generator-cmsv",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "",
   "homepage": "",
   "author": {
     "name": "hygkui",
     "email": "hygkui@gmail.com",
-    "url": ""
+    "url": "http://github.com/hygkui"
   },
   "files": [
     "app"

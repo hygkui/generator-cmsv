@@ -1,2 +1,10 @@
 node_modules
 coverage
+.idea/encodings.xml
+.idea/generator-cmsv.iml
+.idea/jsLibraryMappings.xml
+.idea/misc.xml
+.idea/modules.xml
+.idea/vcs.xml
+.idea/workspace.xml
+npm-debug.log
