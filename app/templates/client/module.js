@@ -1,7 +1,7 @@
 /**
  * Created by <%= user %><<%= email %>> on <%= date %>
  */
-(function () {
+(function (app) {
     'use strict';
 
       app.registerModule('<%= name %>', ['flow', 'core']);
