@@ -2,7 +2,7 @@
 var yeoman = require('yeoman-generator');
 var chalk = require('chalk');
 var yosay = require('yosay');
-
+var pkg = require('../package.json');
 // function capitalize(s)
 // {
 //     return s && s[0].toUpperCase() + s.slice(1);
@@ -37,7 +37,10 @@ module.exports = yeoman.Base.extend({
       this.templatePath('client/client.module.js'),
       this.destinationPath('client/' + this.props.name + '.client.module.js'),
       {
-        name: this.props.name
+        name: this.props.name,
+        date: (new Date()).toLocaleDateString(),
+        user: pkg.author.name,
+        email: pkg.author.email
       }
     );
   },

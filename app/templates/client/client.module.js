@@ -1,6 +1,6 @@
 /**
  *
- * Created by hygkui on 2017/3/12
+ * Created by <%= user %><<%= email %>> on <%= date %>
  */
 (function () {
     'use strict';
