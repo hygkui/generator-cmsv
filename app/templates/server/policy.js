@@ -1,12 +1,11 @@
 /**
- *
- * Created by hygkui on 2017/3/12
+ * Created by <%= user %><<%= email %>> on <%= date %>
  */
 (function () {
     'use strict';
-    
+
     /**
-     * Invoke Timeline Routes Permissions
+     * Invoke <%= Name %> Routes Permissions
      */
     exports.invokeRolesPolicies = function (acl) {
         // Internal Routes for Staff
@@ -14,20 +13,20 @@
             roles: ['superuser', 'admin'],
             allows: [{
                 resources: [
-                    '/app/timelines',
-                    '/app/timelines/:timelineId'
+                    '/app/<%= name %>s',
+                    '/app/<%= name %>s/:<%= name %>Id'
                 ],
                 permissions: ['*']
             }]
         }]);
-        
+
         // Public API Routes for User or Guest.
         acl.allow([{
             roles: ['user'],
             allows: [{
                 resources: [
-                    '/timelines',
-                    '/timelines/:timelineId'
+                    '/<%= name %>s',
+                    '/<%= name %>s/:<%= name %>Id'
                 ],
                 permissions: ['get']
             }]

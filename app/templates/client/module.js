@@ -1,5 +1,4 @@
 /**
- *
  * Created by <%= user %><<%= email %>> on <%= date %>
  */
 (function () {

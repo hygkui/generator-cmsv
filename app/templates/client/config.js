@@ -1,6 +1,5 @@
 /**
- *
- * Created by hygkui on 2017/3/12
+ * Created by <%= user %><<%= email %>> on <%= date %>
  */
 (function () {
     'use strict';
@@ -8,17 +7,17 @@
     angular
         .module('dashboard.routes')
         .config(routeConfig);
-    
+
     routeConfig.$inject = ['$stateProvider'];
-    
+
     function routeConfig($stateProvider) {
         $stateProvider
-            .state('dashboard.timeline', {
-                url: 'dashboard/timeline',
-                templateUrl: 'modules/timeline/client/views/timeline.client.view.html',
-                controller: 'TimelineController',
+            .state('dashboard.<%= name %>', {
+                url: 'dashboard/<%= name %>',
+                templateUrl: 'modules/<%= name %>/client/views/<%= name %>.client.view.html',
+                controller: '<%= Name %>Controller',
                 data: {
-                    pageTitle: 'Dashboard-Timelines',
+                    pageTitle: 'Dashboard-<%= Name %>s',
                     roles: ['admin', 'superuser']
                 }
             });

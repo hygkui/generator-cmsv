@@ -1,49 +1,36 @@
 /**
- *
- * Created by hygkui on 2017/3/12
+ * Created by <%= user %><<%= email %>> on <%= date %>
  */
 (function () {
     'use strict';
     var mongoose = require('mongoose'),
         Schema = mongoose.Schema;
-    
-    var TimelineSchema = new Schema({
-        title: String,
-        user: {
-            type: Schema.ObjectId,
-            ref: 'user'
-        },
-        detail: Object,
-        module: String,  // category by module name
-        level: {
-            type: Number,
-            enum: [0, 1, 2], // normal, key, core event level
-            default: 0
-        },
-        tags: [String],
+
+    var <%= Name %>Schema = new Schema({
+        name: String,
         created: {
             type: Date,
             default: Date.now
         }
     });
-    
+
     /**
      * Hook a pre save method
      */
-    TimelineSchema.pre('save', function (next) {
+    <%= Name %>Schema.pre('save', function (next) {
         // code here
-        
+
         next();
     });
-    
-    TimelineSchema.methods = {
+
+    <%= Name %>Schema.methods = {
         // methodName: function () {}
-        
+
     };
-    
-    TimelineSchema.statics = {
+
+    <%= Name %>Schema.statics = {
         // staticPropertyName: value
-        
+
         load: function (options, cb) {
             this.findOne(options.criteria)
                 .select(options.select)
@@ -55,7 +42,7 @@
                 .sort(options.sortBy || '-created')
                 .exec(cb);
         },
-        timelinePagination: function (options, cb) {
+        <%= name %>Pagination: function (options, cb) {
             var MAX_LIMIT = 50; // set max limit for pagination.
             if (options.limit > MAX_LIMIT) {
                 options.limit = MAX_LIMIT;
@@ -70,7 +57,7 @@
                     .sort(options.sortBy || '-created')
                     .skip(skipFrom)
                     .limit(resultsPerPage);
-            
+
             query.exec(function (error, results) {
                 if (error) {
                     cb(error, null);
@@ -80,7 +67,7 @@
             });
         }
     };
-    
-    module.exports = mongoose.model('timeline', TimelineSchema, 'timelines');
-    
+
+    module.exports = mongoose.model('<%= name %>', <%= Name %>Schema, '<%= name %>s');
+
 }());

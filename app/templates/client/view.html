@@ -2,29 +2,29 @@
   <div class="panel panel-common management clearfix hidden-xs" ng-init="refresh()">
     <div class="management-list set-list">
       <div class="actions">
-        <button class="btn btn-block btn-common" ng-click="selectTimeline(null, 'add');">
+        <button class="btn btn-block btn-common" ng-click="select<%= Name %>(null, 'add');">
           <span class="btn-icon glyphicon glyphicon-plus">
-            <b>New Timeline</b>
+            <b>New <%= Name %></b>
           </span>
         </button>
 
         <div class="clearfix" style="margin-top: 5px;"></div>
         <!--<div class="btn-group btn-group-justified">-->
-          <!--<a class="btn btn-sm btn-default" ng-class="{'active': searchTimelineArchived === false}"-->
-             <!--ng-click="searchTimeline(false)">Active</a>-->
-          <!--<a class="btn btn-sm btn-default" ng-class="{'active': searchTimelineArchived === true}"-->
-             <!--ng-click="searchTimeline(true)">Archived</a>-->
+          <!--<a class="btn btn-sm btn-default" ng-class="{'active': search<%= Name %>Archived === false}"-->
+             <!--ng-click="search<%= Name %>(false)">Active</a>-->
+          <!--<a class="btn btn-sm btn-default" ng-class="{'active': search<%= Name %>Archived === true}"-->
+             <!--ng-click="search<%= Name %>(true)">Archived</a>-->
         <!--</div>-->
 
       </div>
 
       <ul class="list-group">
         <li class="list-group-item"
-            ng-repeat="timeline in timelines | orderBy: -created"
-            ng-click="selectCurrentTimeline(timeline)"
-            ng-class="{'active': currentTimeline._id === timeline._id}">
+            ng-repeat="<%= name %> in <%= name %>s | orderBy: -created"
+            ng-click="selectCurrent<%= Name %>(<%= name %>)"
+            ng-class="{'active': current<%= Name %>._id === <%= name %>._id}">
           <p class="list-group-item-text list-title">
-            <span ng-bind="timeline.title"></span>
+            <span ng-bind="<%= name %>.name"></span>
           </p>
         </li>
       </ul>
@@ -38,18 +38,18 @@
       </div>
     </div>
     <div class="management-details management-content">
-      <div class="report-none-message sm ng-hide" ng-show="!currentTimeline" id="clients_none_message">No Timeline
+      <div class="report-none-message sm ng-hide" ng-show="!current<%= Name %>" id="clients_none_message">No <%= Name %>
         Found
       </div>
-      <div class="panel-body" ng-show="currentTimeline">
+      <div class="panel-body" ng-show="current<%= Name %>">
         <div class="dashboard-title clearfix row">
           <div class="col-md-4 col-md-offset-4">
-            <h2>{{ currentTimeline.title }}</h2>
+            <h2>{{ current<%= Name %>.name }}</h2>
           </div>
           <div class="col-md-4" style="line-height: 1.5; text-align: right">
-            <a href="#" title="Edit Timeline" ng-click="selectTimeline(currentTimeline, 'update');"><span
+            <a href="#" title="Edit <%= Name %>" ng-click="select<%= Name %>(current<%= Name %>, 'update');"><span
               class="glyphicon glyphicon-edit"></span></a>
-            <a href="#" title="Delete Timeline" ng-click="deleteTimeline(currentTimeline);"><span
+            <a href="#" title="Delete <%= Name %>" ng-click="delete<%= Name %>(current<%= Name %>);"><span
               class="glyphicon glyphicon-ban-circle"></span></a>
           </div>
         </div>
@@ -61,7 +61,7 @@
         <div class="sub-title">
           <h3>Detail</h3>
           <div class="section-content">
-              {{ currentTimeline | json }}
+              {{ current<%= Name %> | json }}
           </div>
         </div>
 
@@ -69,7 +69,7 @@
           <h3>Created</h3>
           <div class="section-content">
             <p>
-              <span ng-bind="currentTimeline.created | date: 'medium'"></span>
+              <span ng-bind="current<%= Name %>.created | date: 'medium'"></span>
             </p>
           </div>
         </div>
@@ -79,34 +79,32 @@
   </div>
 </div>
 
-<script type="text/ng-template" id="/timeline_model">
+<script type="text/ng-template" id="/<%= name %>_model">
   <div class="modal-header bg-success">
-    <h3 class="modal-title" ng-bind="currentTimelineAction.title"></h3>
+    <h3 class="modal-title" ng-bind="current<%= Name %>Action.title"></h3>
   </div>
   <div class="modal-body">
-    <form role="form" name="addTimelineForm" ng-submit="submitForm(addTimelineForm)" novalidate>
+    <form role="form" name="add<%= Name %>Form" ng-submit="submitForm(add<%= Name %>Form)" novalidate>
       <div class="clearfix form-group"
-           ng-class="{ 'has-error' : addTimelineForm.timelineTitle.$invalid && !addTimelineForm.timelineTitle.$pristine }">
+           ng-class="{ 'has-error' : add<%= Name %>Form.<%= name %>Name.$invalid && !add<%= Name %>Form.<%= name %>Name.$pristine }">
         <div class="input-group">
           <span class="input-group-addon"><i class="fa fa-info-circle" aria-hidden="true"></i></span>
-          <input type="text" class="form-control" name="timelineTitle" placeholder="Timeline Title"
-                 ng-model="timeline.title"
+          <input type="text" class="form-control" name="<%= name %>Name" placeholder="<%= Name %> Name"
+                 ng-model="<%= name %>.name"
                  minlength="5" maxlength="256"
                  required/>
         </div>
-        <p ng-show="addTimelineForm.timelineTitle.$error.minlength" class="help-block ng-hide">Minimum Length is 5</p>
-        <p ng-show="addTimelineForm.timelineTitle.$error.maxlength" class="help-block ng-hide">Maximum Length is
+        <p ng-show="add<%= Name %>Form.<%= name %>Name.$error.minlength" class="help-block ng-hide">Minimum Length is 5</p>
+        <p ng-show="add<%= Name %>Form.<%= name %>Name.$error.maxlength" class="help-block ng-hide">Maximum Length is
           256</p>
       </div>
-
-      
     </form>
   </div>
   <div class="modal-footer text-right">
     <button class="btn btn-default" ng-click="$dismiss()"><i class="btn-icon glyphicon glyphicon-remove"></i>Cancel
     </button>
-    <button class="btn btn-common" ng-click="operateTimeline()" ng-disabled="addTimelineForm.$invalid"><i
-      class="btn-icon glyphicon glyphicon-ok"></i>{{currentTimelineAction.text}}
+    <button class="btn btn-common" ng-click="operate<%= Name %>()" ng-disabled="add<%= Name %>Form.$invalid"><i
+      class="btn-icon glyphicon glyphicon-ok"></i>{{current<%= Name %>Action.text}}
     </button>
   </div>
 </script>
