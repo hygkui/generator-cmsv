@@ -5,15 +5,15 @@
     'use strict';
     // Setting up angular routes
     angular
-        .module('dashboard.routes')
+        .module('master.routes')
         .config(routeConfig);
 
     routeConfig.$inject = ['$stateProvider'];
 
     function routeConfig($stateProvider) {
         $stateProvider
-            .state('dashboard.<%= name %>', {
-                url: 'dashboard/<%= name %>',
+            .state('master.<%= name %>', {
+                url: '<%= name %>',
                 templateUrl: 'modules/<%= name %>/client/views/<%= name %>.client.view.html',
                 controller: '<%= Name %>Controller',
                 data: {
